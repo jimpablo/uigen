@@ -33,6 +33,10 @@ MODEL_ID=GLM-5.1
 ```
 Note: the provider fetch interceptor in `src/lib/provider.ts` rewrites the URL path to include `/v1/` since `@ai-sdk/anthropic` omits it when a custom `baseURL` is set.
 
+## Code Style
+
+Use comments sparingly. Only comment complex code.
+
 ## Architecture
 
 UIGen is a chat-driven React component generator. Users describe a UI and Claude generates live-previewed JSX — no files written to disk.
