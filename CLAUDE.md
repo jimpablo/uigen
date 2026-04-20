@@ -79,6 +79,8 @@ PreviewFrame iframe  (src/components/preview/PreviewFrame.tsx)
 
 ### Data model (Prisma/SQLite)
 
+The database schema is defined in `prisma/schema.prisma`. Reference it anytime you need to understand the structure of data stored in the database.
+
 - `User` — email + hashed password
 - `Project` — `messages` (JSON chat history), `data` (serialized VFS)
 
