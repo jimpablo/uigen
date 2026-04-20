@@ -26,6 +26,13 @@ npm run db:reset       # reset and re-run all migrations
 
 Requires `ANTHROPIC_API_KEY` in `.env`. Without it, the app falls back to `MockLanguageModel` in `src/lib/provider.ts` which returns static component code.
 
+For Anthropic-compatible providers (e.g. Zhipu GLM), also set:
+```
+ANTHROPIC_BASE_URL=https://open.bigmodel.cn/api/anthropic
+MODEL_ID=GLM-5.1
+```
+Note: the provider fetch interceptor in `src/lib/provider.ts` rewrites the URL path to include `/v1/` since `@ai-sdk/anthropic` omits it when a custom `baseURL` is set.
+
 ## Architecture
 
 UIGen is a chat-driven React component generator. Users describe a UI and Claude generates live-previewed JSX — no files written to disk.
@@ -35,7 +42,7 @@ UIGen is a chat-driven React component generator. Users describe a UI and Claude
 ```
 POST /api/chat  (src/app/api/chat/route.ts)
   ↓
-Claude Haiku 4.5  (src/lib/provider.ts)
+Language model via getLanguageModel()  (src/lib/provider.ts)  — defaults to GLM-5.1 / claude-haiku-4-5
   ↓ tool calls
 str_replace_editor / file_manager  (src/lib/tools/)
   ↓ mutates
