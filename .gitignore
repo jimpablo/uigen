@@ -55,3 +55,6 @@ next-env.d.ts
 
 # screenshots
 *.png
+
+# editor
+.vscode/
